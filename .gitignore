@@ -8,12 +8,16 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-prod
+src
 build
+gulp
 .DS_Store
-dist
 dist-ssr
 coverage
+gulpfile.js
+package-lock.json
+package.json
+webpack.config.js
 *.local
 .eslintcache
 .stylelintcache
