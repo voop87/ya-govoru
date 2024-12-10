@@ -1,0 +1,28 @@
+.header {
+	position: fixed;
+	display: flex;
+	z-index: 100;
+	background-color: var(--white-color);
+	width: 100%;
+	max-width: 1440px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+
+	&__logo {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	&__logo-img {
+		width: 80px;
+		height: 80px;
+	}
+
+	&__navlist {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+}
