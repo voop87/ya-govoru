@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Логопед-дефектолог в Новосибирске. Запуск речи, АВА-терапия, работа с РАС, ЗПР. Запишитесь на консультацию онлайн." />
+		<title>Логопед-Дефектолог | Запуск речи и АВА-терапия — Новосибирск</title>
+
+		<!-- Google Fonts: Nunito + Inter с поддержкой кириллицы -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+			rel="stylesheet" />
+
+		<!-- Rellax.js — лёгкая библиотека параллакса (Vanilla JS) -->
+		<script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
+
+		<!-- Основные стили проекта -->
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<!-- =====================================================================
+       НАВИГАЦИЯ
+  ====================================================================== -->
+		<header class="nav-header" id="mainNav">
+			<div class="container nav-inner">
+				<a href="#hero" class="nav-logo">
+					<span class="logo-icon">🗣</span>
+					<span class="logo-text">Я<strong> говорю!</strong></span>
+				</a>
+				<nav class="nav-links" id="navLinks">
+					<a href="#specializations" class="nav-link">Специализация</a>
+					<a href="#about" class="nav-link">Обо мне</a>
+					<a href="#gallery" class="nav-link">Галерея</a>
+					<a href="#reviews" class="nav-link">Отзывы</a>
+					<a href="#contacts" class="nav-link">Контакты</a>
+				</nav>
+				<a href="#contacts" class="btn btn-primary btn-nav">Записаться</a>
+				<button class="nav-burger" id="navBurger" aria-label="Меню">
+					<span></span><span></span><span></span>
+				</button>
+			</div>
+		</header>
+
+		<!-- Мобильное меню -->
+		<div class="mobile-menu" id="mobileMenu">
+			<a href="#specializations" class="mobile-link">Специализация</a>
+			<a href="#about" class="mobile-link">Обо мне</a>
+			<a href="#gallery" class="mobile-link">Галерея</a>
+			<a href="#reviews" class="mobile-link">Отзывы</a>
+			<a href="#contacts" class="mobile-link">Контакты</a>
+			<a href="#contacts" class="btn btn-primary" style="margin-top: 1rem"
+				>Записаться</a
+			>
+		</div>
+
+		<main>
+			<!-- =====================================================================
+         HERO — ПАРАЛЛАКС-СЕКЦИЯ
+    ====================================================================== -->
+			<section class="hero" id="hero">
+				<!-- ── СЛОЙ 0: Базовый фон (само изображение) ── -->
+				<div class="parallax-scene" id="parallaxScene">
+					<!-- Дальний слой: стена + мелкие буквы вдали -->
+					<div class="parallax-layer layer-far rellax" data-rellax-speed="-6">
+						<img
+							src="bg-letters.jpg"
+							alt="Красочные буквы русского алфавита на стене в кабинете логопеда"
+							class="hero-bg-img" />
+						<!-- Программные «далёкие» буквы -->
+						<span
+							class="prog-letter far-letter"
+							style="
+								top: 12%;
+								left: 8%;
+								font-size: 1.4rem;
+								color: #a8c5c0;
+								opacity: 0.35;
+								transform: rotate(-15deg);
+							"
+							>ж</span
+						>
+						<span
+							class="prog-letter far-letter"
+							style="
+								top: 8%;
+								left: 78%;
+								font-size: 1.1rem;
+								color: #c5a8b0;
+								opacity: 0.3;
+								transform: rotate(10deg);
+							"
+							>э</span
+						>
+						<span
+							class="prog-letter far-letter"
+							style="
+								top: 55%;
+								left: 91%;
+								font-size: 1.2rem;
+								color: #a8b5c5;
+								opacity: 0.3;
+								transform: rotate(-8deg);
+							"
+							>щ</span
+						>
+					</div>
+
+					<!-- Средний слой: средние буквы -->
+					<div class="parallax-layer layer-mid rellax" data-rellax-speed="-3">
+						<span
+							class="prog-letter mid-letter"
+							style="
+								top: 18%;
+								left: 5%;
+								font-size: 2.8rem;
+								color: #4ba3a0;
+								opacity: 0.55;
+								transform: rotate(-12deg);
+							"
+							>А</span
+						>
+						<span
+							class="prog-letter mid-letter"
+							style="
+								top: 22%;
+								right: 6%;
+								font-size: 3rem;
+								color: #e07b6a;
+								opacity: 0.5;
+								transform: rotate(8deg);
+							"
+							>Б</span
+						>
+						<span
+							class="prog-letter mid-letter"
+							style="
+								top: 65%;
+								left: 3%;
+								font-size: 2.4rem;
+								color: #6db47a;
+								opacity: 0.5;
+								transform: rotate(5deg);
+							"
+							>В</span
+						>
+						<span
+							class="prog-letter mid-letter"
+							style="
+								top: 70%;
+								right: 4%;
+								font-size: 2.6rem;
+								color: #e8b44a;
+								opacity: 0.5;
+								transform: rotate(-10deg);
+							"
+							>Г</span
+						>
+						<span
+							class="prog-letter mid-letter"
+							style="
+								top: 42%;
+								left: 2%;
+								font-size: 2.2rem;
+								color: #8a6dc8;
+								opacity: 0.45;
+								transform: rotate(18deg);
+							"
+							>Д</span
+						>
+						<span
+							class="prog-letter mid-letter"
+							style="
+								top: 38%;
+								right: 2%;
+								font-size: 2rem;
+								color: #4ba3a0;
+								opacity: 0.45;
+								transform: rotate(-20deg);
+							"
+							>Е</span
+						>
+					</div>
+
+					<!-- Ближний слой: крупные буквы + объекты -->
+					<div class="parallax-layer layer-near rellax" data-rellax-speed="-1">
+						<span
+							class="prog-letter near-letter hover-wiggle"
+							style="
+								top: 10%;
+								left: 1%;
+								font-size: 5rem;
+								color: #f43f5e;
+								opacity: 0.7;
+								transform: rotate(-8deg);
+							"
+							>Р</span
+						>
+						<span
+							class="prog-letter near-letter hover-wiggle"
+							style="
+								top: 15%;
+								right: 1%;
+								font-size: 4.5rem;
+								color: #0d9488;
+								opacity: 0.65;
+								transform: rotate(6deg);
+							"
+							>Е</span
+						>
+						<span
+							class="prog-letter near-letter hover-wiggle"
+							style="
+								bottom: 22%;
+								left: 0%;
+								font-size: 4rem;
+								color: #f59e0b;
+								opacity: 0.6;
+								transform: rotate(12deg);
+							"
+							>Ч</span
+						>
+						<span
+							class="prog-letter near-letter hover-wiggle"
+							style="
+								bottom: 18%;
+								right: 0%;
+								font-size: 4.5rem;
+								color: #6366f1;
+								opacity: 0.6;
+								transform: rotate(-14deg);
+							"
+							>Ь</span
+						>
+					</div>
+				</div>
+
+				<!-- Оверлей для читаемости контента -->
+				<div class="hero-overlay"></div>
+
+				<!-- Контент Hero -->
+				<div class="container hero-content">
+					<div class="hero-badge fade-in-up">
+						<span class="badge-dot"></span>
+						Новосибирск · Запись открыта
+					</div>
+
+					<h1 class="hero-title fade-in-up" style="animation-delay: 0.15s">
+						Ваш ребёнок<br />
+						<span class="hero-title-accent">заговорит</span> —<br />
+						я знаю как
+					</h1>
+
+					<p class="hero-subtitle fade-in-up" style="animation-delay: 0.3s">
+						Специализированная помощь детям с РАС, ЗПР и задержкой речи.<br />
+						Запуск речи · АВА-терапия · Сенсорная интеграция
+					</p>
+
+					<div class="hero-cta-group fade-in-up" style="animation-delay: 0.45s">
+						<a href="#contacts" class="btn btn-cta btn-hero">
+							<svg
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5">
+								<path
+									d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+							</svg>
+							Записаться на консультацию
+						</a>
+						<a href="#specializations" class="btn btn-outline-hero">
+							Узнать больше
+							<svg
+								width="18"
+								height="18"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5">
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</a>
+					</div>
+
+					<!-- Статы -->
+					<div class="hero-stats fade-in-up" style="animation-delay: 0.6s">
+						<div class="hero-stat">
+							<span class="stat-num">8+</span>
+							<span class="stat-label">лет опыта</span>
+						</div>
+						<div class="stat-divider"></div>
+						<div class="hero-stat">
+							<span class="stat-num">500+</span>
+							<span class="stat-label">детей</span>
+						</div>
+						<div class="stat-divider"></div>
+						<div class="hero-stat">
+							<span class="stat-num">95%</span>
+							<span class="stat-label">положит. динамика</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Стрелка вниз -->
+				<div class="hero-scroll-hint">
+					<svg
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2">
+						<path d="M12 5v14M5 12l7 7 7-7" />
+					</svg>
+				</div>
+			</section>
+
+			<!-- =====================================================================
+         СПЕЦИАЛИЗАЦИИ
+    ====================================================================== -->
+			<section class="section specializations" id="specializations">
+				<div class="container">
+					<div class="section-header reveal">
+						<p class="section-label">Чем я занимаюсь</p>
+						<h2 class="section-title">Направления работы</h2>
+						<p class="section-desc">
+							Комплексный подход, основанный на доказательных методиках и
+							глубоком понимании каждого ребёнка
+						</p>
+					</div>
+
+					<div class="cards-grid">
+						<!-- Карточка 1 -->
+						<article class="spec-card reveal" style="--card-color: #0d9488">
+							<div class="spec-card-icon">
+								<svg
+									width="36"
+									height="36"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8">
+									<path
+										d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+								</svg>
+							</div>
+							<h3 class="spec-card-title">Запуск речи</h3>
+							<p class="spec-card-text">
+								Работаем с детьми от 1,5 лет. Формируем первые слова, слоги и
+								фразы с помощью игровых и коммуникативных методик PECS, AAC и
+								поведенческих подходов.
+							</p>
+							<ul class="spec-card-list">
+								<li>Безречевые дети и дети с эхолалией</li>
+								<li>Формирование инициативной речи</li>
+								<li>Коммуникативные альтернативы</li>
+							</ul>
+							<div class="spec-card-accent"></div>
+						</article>
+
+						<!-- Карточка 2 -->
+						<article
+							class="spec-card spec-card--featured reveal"
+							style="--card-color: #f43f5e">
+							<div class="spec-card-badge">Ключевое направление</div>
+							<div class="spec-card-icon">
+								<svg
+									width="36"
+									height="36"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8">
+									<path d="M9 11l3 3L22 4" />
+									<path
+										d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+								</svg>
+							</div>
+							<h3 class="spec-card-title">АВА-терапия</h3>
+							<p class="spec-card-text">
+								Прикладной анализ поведения (Applied Behavior Analysis) — самый
+								изученный метод работы с РАС. Структурированные программы с
+								измеримым прогрессом на каждом шаге.
+							</p>
+							<ul class="spec-card-list">
+								<li>Индивидуальный план коррекции</li>
+								<li>Снижение нежелательного поведения</li>
+								<li>Социальные навыки и самостоятельность</li>
+							</ul>
+							<div class="spec-card-accent"></div>
+						</article>
+
+						<!-- Карточка 3 -->
+						<article class="spec-card reveal" style="--card-color: #f59e0b">
+							<div class="spec-card-icon">
+								<svg
+									width="36"
+									height="36"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8">
+									<circle cx="12" cy="12" r="10" />
+									<path d="M12 8v4l3 3" />
+								</svg>
+							</div>
+							<h3 class="spec-card-title">Сенсорная интеграция</h3>
+							<p class="spec-card-text">
+								Помогаем нервной системе ребёнка правильно обрабатывать
+								сенсорные сигналы. Снижение гиперчувствительности и работа с
+								сенсорными «голодом» и защитами.
+							</p>
+							<ul class="spec-card-list">
+								<li>Оценка сенсорного профиля</li>
+								<li>Адаптированные сенсорные диеты</li>
+								<li>Снижение стрессовой нагрузки</li>
+							</ul>
+							<div class="spec-card-accent"></div>
+						</article>
+
+						<!-- Карточка 4 -->
+						<article class="spec-card reveal" style="--card-color: #6366f1">
+							<div class="spec-card-icon">
+								<svg
+									width="36"
+									height="36"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8">
+									<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+									<circle cx="9" cy="7" r="4" />
+									<path
+										d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+								</svg>
+							</div>
+							<h3 class="spec-card-title">ЗПР и ЗРР</h3>
+							<p class="spec-card-text">
+								Задержка психоречевого и речевого развития — области нашей
+								ключевой экспертизы. Диагностика, составление маршрута и
+								системная работа для достижения возрастной нормы.
+							</p>
+							<ul class="spec-card-list">
+								<li>Комплексная диагностика</li>
+								<li>Когнитивное развитие</li>
+								<li>Подготовка к школе</li>
+							</ul>
+							<div class="spec-card-accent"></div>
+						</article>
+
+						<!-- Карточка 5 -->
+						<article class="spec-card reveal" style="--card-color: #10b981">
+							<div class="spec-card-icon">
+								<svg
+									width="36"
+									height="36"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8">
+									<path d="M12 2L2 7l10 5 10-5-10-5z" />
+									<path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+								</svg>
+							</div>
+							<h3 class="spec-card-title">PECS и ААС</h3>
+							<p class="spec-card-text">
+								Система обмена изображениями (PECS) и
+								альтернативная/дополнительная коммуникация — мостик к
+								полноценной речи для детей с тяжёлыми нарушениями коммуникации.
+							</p>
+							<ul class="spec-card-list">
+								<li>6 этапов PECS-программы</li>
+								<li>Коммуникативные устройства и карточки</li>
+								<li>Обучение семьи</li>
+							</ul>
+							<div class="spec-card-accent"></div>
+						</article>
+
+						<!-- Карточка 6 -->
+						<article class="spec-card reveal" style="--card-color: #ec4899">
+							<div class="spec-card-icon">
+								<svg
+									width="36"
+									height="36"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8">
+									<path
+										d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+								</svg>
+							</div>
+							<h3 class="spec-card-title">Поддержка семьи</h3>
+							<p class="spec-card-text">
+								Родители — ключевой ресурс в работе с ребёнком. Обучаем технике
+								работы в домашних условиях, объясняем стратегии поведения и
+								снижаем стресс всей семьи.
+							</p>
+							<ul class="spec-card-list">
+								<li>Родительские тренинги</li>
+								<li>Домашние программы</li>
+								<li>Онлайн-консультации</li>
+							</ul>
+							<div class="spec-card-accent"></div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- =====================================================================
+         О СПЕЦИАЛИСТЕ
+    ====================================================================== -->
+			<section class="section about" id="about">
+				<div class="container">
+					<div class="about-grid">
+						<!-- Левая колонка: фото + сертификаты -->
+						<div class="about-left reveal">
+							<div class="about-photo-wrap">
+								<div class="about-photo-placeholder">
+									<svg
+										width="80"
+										height="80"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="#ffffff80"
+										stroke-width="1.2">
+										<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+										<circle cx="12" cy="7" r="4" />
+									</svg>
+									<p
+										style="
+											color: #ffffff70;
+											font-size: 0.85rem;
+											margin-top: 1rem;
+											text-align: center;
+										">
+										Фото специалиста
+									</p>
+								</div>
+
+								<!-- Floating badge -->
+								<div class="about-badge-float">
+									<span class="badge-float-num">8+</span>
+									<span class="badge-float-text">лет<br />практики</span>
+								</div>
+							</div>
+
+							<!-- Дипломы и сертификаты -->
+							<div class="certs-grid">
+								<div class="cert-item">
+									<div class="cert-icon">🎓</div>
+									<div class="cert-text">
+										<strong>НГПУ</strong>
+										<span>Логопедия, дефектология</span>
+									</div>
+								</div>
+								<div class="cert-item">
+									<div class="cert-icon">📜</div>
+									<div class="cert-text">
+										<strong>АВА-терапия</strong>
+										<span>Сертификат BCBA-уровня</span>
+									</div>
+								</div>
+								<div class="cert-item">
+									<div class="cert-icon">🏅</div>
+									<div class="cert-text">
+										<strong>PECS Level 1&2</strong>
+										<span>Pyramid Ed. Consultants</span>
+									</div>
+								</div>
+								<div class="cert-item">
+									<div class="cert-icon">⭐</div>
+									<div class="cert-text">
+										<strong>Сенс. интеграция</strong>
+										<span>STAR Institute, 2022</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Правая колонка: текст -->
+						<div class="about-right reveal">
+							<p class="section-label">Обо мне</p>
+							<h2 class="section-title" style="text-align: left">
+								Ирина Скорюпина
+							</h2>
+							<p class="about-role">Логопед-дефектолог · АВА-терапист</p>
+
+							<p class="about-text">
+								Более 8 лет я помогаю детям с расстройствами аутистического
+								спектра, задержкой психоречевого развития и нарушениями речи
+								найти свой голос. За это время каждый второй ребёнок, пришедший
+								ко мне без единого слова, начал говорить фразами.
+							</p>
+
+							<p class="about-text">
+								Мой подход строится на трёх принципах:
+								<strong>доказательность</strong> (только методики с научной
+								базой), <strong>индивидуальность</strong> (нет универсальных
+								программ — есть программа для каждого ребёнка) и
+								<strong>партнёрство с семьёй</strong> (родители — полноправные
+								участники терапии).
+							</p>
+
+							<!-- Ценности -->
+							<div class="values-list">
+								<div class="value-item">
+									<div
+										class="value-icon"
+										style="background: #fef3c7; color: #d97706">
+										💡
+									</div>
+									<div class="value-text">
+										<strong>Доказательный подход</strong>
+										<span>Только проверенные наукой методики</span>
+									</div>
+								</div>
+								<div class="value-item">
+									<div
+										class="value-icon"
+										style="background: #f0fdf4; color: #16a34a">
+										🤝
+									</div>
+									<div class="value-text">
+										<strong>Партнёрство с родителями</strong>
+										<span>Вы — ключевой ресурс ребёнка</span>
+									</div>
+								</div>
+								<div class="value-item">
+									<div
+										class="value-icon"
+										style="background: #fff1f2; color: #f43f5e">
+										❤️
+									</div>
+									<div class="value-text">
+										<strong>Уважение к ребёнку</strong>
+										<span>Безопасная среда без давления</span>
+									</div>
+								</div>
+								<div class="value-item">
+									<div
+										class="value-icon"
+										style="background: #eef2ff; color: #6366f1">
+										📊
+									</div>
+									<div class="value-text">
+										<strong>Измеримый прогресс</strong>
+										<span>Еженедельная отчётность по динамике</span>
+									</div>
+								</div>
+							</div>
+
+							<a
+								href="#contacts"
+								class="btn btn-primary"
+								style="margin-top: 2rem">
+								Записаться на диагностику
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- =====================================================================
+         КАК ПРОХОДИТ РАБОТА
+    ====================================================================== -->
+			<section class="section process" id="process">
+				<div class="container">
+					<div class="section-header reveal">
+						<p class="section-label">Процесс работы</p>
+						<h2 class="section-title">Как мы работаем</h2>
+						<p class="section-desc">
+							Четыре шага от первого звонка до устойчивого результата
+						</p>
+					</div>
+
+					<div class="process-steps">
+						<div class="process-step reveal">
+							<div class="step-number">01</div>
+							<div class="step-body">
+								<h3 class="step-title">Первичная консультация</h3>
+								<p class="step-text">
+									Знакомство с ребёнком и историей развития. Анализ запроса
+									родителей. Бесплатно — 30 минут.
+								</p>
+							</div>
+						</div>
+						<div class="process-connector"></div>
+						<div class="process-step reveal">
+							<div class="step-number">02</div>
+							<div class="step-body">
+								<h3 class="step-title">Комплексная диагностика</h3>
+								<p class="step-text">
+									Оценка речи, поведения, сенсорного профиля и когнитивных
+									функций. 60–90 минут.
+								</p>
+							</div>
+						</div>
+						<div class="process-connector"></div>
+						<div class="process-step reveal">
+							<div class="step-number">03</div>
+							<div class="step-body">
+								<h3 class="step-title">Индивидуальный план</h3>
+								<p class="step-text">
+									Разработка персональной программы коррекции с конкретными
+									целями, сроками и домашними заданиями.
+								</p>
+							</div>
+						</div>
+						<div class="process-connector"></div>
+						<div class="process-step reveal">
+							<div class="step-number">04</div>
+							<div class="step-body">
+								<h3 class="step-title">Регулярная терапия</h3>
+								<p class="step-text">
+									2–3 занятия в неделю. Еженедельные отчёты родителям.
+									Корректировка плана по динамике.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- =====================================================================
+         ГАЛЕРЕЯ — СЛАЙДЕР
+    ====================================================================== -->
+			<section class="section gallery" id="gallery">
+				<div class="container">
+					<div class="section-header reveal">
+						<p class="section-label">Рабочее пространство</p>
+						<h2 class="section-title">Наш кабинет</h2>
+						<p class="section-desc">
+							Уютная, безопасная и стимулирующая среда для занятий
+						</p>
+					</div>
+
+					<!-- Слайдер -->
+					<div class="slider-wrap reveal">
+						<div class="slider" id="mainSlider">
+							<div class="slider-track" id="sliderTrack">
+								<!-- Слайды (плейсхолдеры) -->
+								<div class="slide">
+									<div
+										class="slide-placeholder"
+										style="
+											background: linear-gradient(135deg, #ccfbf1, #a7f3d0);
+										">
+										<span class="slide-emoji">🪑</span>
+										<p>
+											Рабочая зона<br /><small
+												>Удобное пространство для занятий</small
+											>
+										</p>
+									</div>
+								</div>
+
+								<div class="slide">
+									<div
+										class="slide-placeholder"
+										style="
+											background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+										">
+										<span class="slide-emoji">🧸</span>
+										<p>
+											Игровая зона<br /><small
+												>Сенсорные материалы и игрушки</small
+											>
+										</p>
+									</div>
+								</div>
+
+								<div class="slide">
+									<div
+										class="slide-placeholder"
+										style="
+											background: linear-gradient(135deg, #fef3c7, #fde68a);
+										">
+										<span class="slide-emoji">📚</span>
+										<p>
+											Дидактические материалы<br /><small
+												>PECS-карточки, настольные игры</small
+											>
+										</p>
+									</div>
+								</div>
+
+								<div class="slide">
+									<div
+										class="slide-placeholder"
+										style="
+											background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+										">
+										<span class="slide-emoji">🎨</span>
+										<p>
+											Арт-зона<br /><small
+												>Творческая работа и мелкая моторика</small
+											>
+										</p>
+									</div>
+								</div>
+
+								<div class="slide">
+									<div
+										class="slide-placeholder"
+										style="
+											background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+										">
+										<span class="slide-emoji">🌟</span>
+										<p>
+											Сенсорная зона<br /><small
+												>Мягкое освещение и тактильные игры</small
+											>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Навигация -->
+						<button
+							class="slider-btn slider-btn--prev"
+							id="sliderPrev"
+							aria-label="Предыдущий слайд">
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5">
+								<path d="M15 18l-6-6 6-6" />
+							</svg>
+						</button>
+						<button
+							class="slider-btn slider-btn--next"
+							id="sliderNext"
+							aria-label="Следующий слайд">
+							<svg
+								width="22"
+								height="22"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5">
+								<path d="M9 18l6-6-6-6" />
+							</svg>
+						</button>
+
+						<!-- Точки -->
+						<div class="slider-dots" id="sliderDots"></div>
+					</div>
+				</div>
+			</section>
+
+			<!-- =====================================================================
+         ОТЗЫВЫ — 2GIS
+    ====================================================================== -->
+			<section class="section reviews" id="reviews">
+				<div class="container">
+					<div class="section-header reveal">
+						<p class="section-label">Что говорят родители</p>
+						<h2 class="section-title">Отзывы на 2GIS</h2>
+						<p class="section-desc">
+							Реальные истории семей, которым я помогла
+						</p>
+						<a
+							href="https://2gis.ru/novosibirsk/firm/70000001064307042/tab/reviews"
+							target="_blank"
+							rel="noopener"
+							class="twogis-link">
+							<svg
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2">
+								<path
+									d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+							</svg>
+							Все отзывы на 2GIS
+						</a>
+					</div>
+
+					<!-- Сводный рейтинг -->
+					<div class="rating-summary reveal">
+						<div class="rating-score">4.9</div>
+						<div class="rating-info">
+							<div class="rating-stars" id="ratingStars"></div>
+							<p class="rating-count">На основании 47 отзывов</p>
+							<p class="rating-source">Источник: 2GIS</p>
+						</div>
+					</div>
+
+					<!-- Сетка отзывов (заполняется из JS) -->
+					<div class="reviews-grid" id="reviewsGrid"></div>
+				</div>
+			</section>
+
+			<!-- =====================================================================
+         КОНТАКТЫ + КАРТА + ФОРМА
+    ====================================================================== -->
+			<section class="section contacts" id="contacts">
+				<div class="container">
+					<div class="section-header reveal">
+						<p class="section-label">Свяжитесь с нами</p>
+						<h2 class="section-title">Контакты и запись</h2>
+						<p class="section-desc">Записывайтесь удобным способом</p>
+					</div>
+
+					<div class="contacts-grid">
+						<!-- Левая колонка: инфо + соцсети -->
+						<div class="contacts-info reveal">
+							<div class="contact-card">
+								<div class="contact-icon">
+									<svg
+										width="22"
+										height="22"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2">
+										<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+										<circle cx="12" cy="10" r="3" />
+									</svg>
+								</div>
+								<div>
+									<strong>Адрес</strong>
+									<p>
+										Новосибирск, ул. Ленина, 52<br /><small
+											style="color: #94a3b8"
+											>Октябрьский район</small
+										>
+									</p>
+								</div>
+							</div>
+
+							<div class="contact-card">
+								<div class="contact-icon">
+									<svg
+										width="22"
+										height="22"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2">
+										<path
+											d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.908.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+									</svg>
+								</div>
+								<div>
+									<strong>Телефон</strong>
+									<p>
+										<a href="tel:+73832000000" class="contact-link"
+											>+7 (383) 200-00-00</a
+										>
+									</p>
+								</div>
+							</div>
+
+							<div class="contact-card">
+								<div class="contact-icon">
+									<svg
+										width="22"
+										height="22"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2">
+										<circle cx="12" cy="12" r="10" />
+										<polyline points="12 6 12 12 16 14" />
+									</svg>
+								</div>
+								<div>
+									<strong>Часы работы</strong>
+									<p>Пн–Пт: 9:00 – 20:00<br />Сб: 10:00 – 16:00</p>
+								</div>
+							</div>
+
+							<!-- Соцсети -->
+							<div class="social-block">
+								<p class="social-title">Я в социальных сетях</p>
+								<div class="social-buttons">
+									<!-- Telegram -->
+									<a
+										href="https://t.me/logoped_nsk"
+										target="_blank"
+										rel="noopener"
+										class="social-btn social-btn--tg"
+										aria-label="Telegram">
+										<svg
+											width="22"
+											height="22"
+											viewBox="0 0 24 24"
+											fill="currentColor">
+											<path
+												d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+										</svg>
+										<span>Telegram</span>
+									</a>
+
+									<!-- WhatsApp -->
+									<a
+										href="https://wa.me/73832000000"
+										target="_blank"
+										rel="noopener"
+										class="social-btn social-btn--wa"
+										aria-label="WhatsApp">
+										<svg
+											width="22"
+											height="22"
+											viewBox="0 0 24 24"
+											fill="currentColor">
+											<path
+												d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+										</svg>
+										<span>WhatsApp</span>
+									</a>
+
+									<!-- VK -->
+									<a
+										href="https://vk.com/logoped_nsk"
+										target="_blank"
+										rel="noopener"
+										class="social-btn social-btn--vk"
+										aria-label="ВКонтакте">
+										<svg
+											width="22"
+											height="22"
+											viewBox="0 0 24 24"
+											fill="currentColor">
+											<path
+												d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.523-2.049-1.71-1.033-1.033-1.49-.916-1.49.23v1.48c0 .327-.097.523-.997.523-1.47 0-3.1-.905-4.25-2.588-1.72-2.425-2.19-4.234-2.19-4.61 0-.163.065-.327.327-.327h1.744c.228 0 .327.098.392.295.327 1.09 1.023 2.72 1.254 2.72.196 0 .294-.097.294-.62V9.784c-.065-.915-.523-1.01-.523-1.238 0-.196.164-.393.425-.393h2.746c.228 0 .327.131.327.392v3.428c0 .23.098.327.164.327.196 0 .36-.097.72-.457 1.12-1.254 1.908-3.185 1.908-3.185.098-.196.23-.36.46-.36h1.744c.523 0 .654.27.523.622-.228.784-2.385 4.106-2.385 4.106-.196.327-.26.49 0 .85.196.261 1.48 1.483 1.48 1.483.98.98 1.124 1.46.754 1.46z" />
+										</svg>
+										<span>ВКонтакте</span>
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Правая колонка: форма -->
+						<div class="contacts-form-wrap reveal">
+							<form class="contact-form" id="contactForm" novalidate>
+								<h3 class="form-title">Записаться на консультацию</h3>
+								<p class="form-subtitle">
+									Заполните форму — я свяжусь с вами в рабочее время
+								</p>
+
+								<div class="form-group">
+									<label for="fieldName" class="form-label"
+										>Ваше имя <span class="required">*</span></label
+									>
+									<input
+										type="text"
+										id="fieldName"
+										name="name"
+										class="form-input"
+										placeholder="Например: Екатерина"
+										required />
+									<span class="form-error" id="errorName"></span>
+								</div>
+
+								<div class="form-group">
+									<label for="fieldPhone" class="form-label"
+										>Номер телефона <span class="required">*</span></label
+									>
+									<input
+										type="tel"
+										id="fieldPhone"
+										name="phone"
+										class="form-input"
+										placeholder="+7 (___) ___-__-__"
+										required />
+									<span class="form-error" id="errorPhone"></span>
+								</div>
+
+								<div class="form-group">
+									<label for="fieldAge" class="form-label"
+										>Возраст ребёнка <span class="required">*</span></label
+									>
+									<select
+										id="fieldAge"
+										name="age"
+										class="form-input form-select"
+										required>
+										<option value="">Выберите возраст</option>
+										<option value="1-2">1–2 года</option>
+										<option value="2-3">2–3 года</option>
+										<option value="3-4">3–4 года</option>
+										<option value="4-5">4–5 лет</option>
+										<option value="5-6">5–6 лет</option>
+										<option value="6-7">6–7 лет</option>
+										<option value="7-9">7–9 лет</option>
+										<option value="9+">Старше 9 лет</option>
+									</select>
+									<span class="form-error" id="errorAge"></span>
+								</div>
+
+								<div class="form-group">
+									<label for="fieldDesc" class="form-label"
+										>Кратко опишите ситуацию</label
+									>
+									<textarea
+										id="fieldDesc"
+										name="description"
+										class="form-input form-textarea"
+										placeholder="Напишите о трудностях ребёнка — это поможет нам лучше подготовиться к встрече"
+										rows="4"></textarea>
+								</div>
+
+								<button
+									type="submit"
+									class="btn btn-cta btn-form-submit"
+									id="formSubmitBtn">
+									<svg
+										width="18"
+										height="18"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2.5">
+										<line x1="22" y1="2" x2="11" y2="13" />
+										<polygon points="22 2 15 22 11 13 2 9 22 2" />
+									</svg>
+									Отправить заявку
+								</button>
+
+								<p class="form-privacy">
+									<svg
+										width="12"
+										height="12"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2">
+										<rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+										<path d="M7 11V7a5 5 0 0 1 10 0v4" />
+									</svg>
+									Ваши данные защищены и не передаются третьим лицам
+								</p>
+
+								<!-- Сообщение об успехе -->
+								<div class="form-success" id="formSuccess">
+									<div class="success-icon">✅</div>
+									<h4>Заявка отправлена!</h4>
+									<p>Я отвечу Вам в ближайшее время. Спасибо за доверие!</p>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<!-- Карта -->
+					<div class="map-wrap reveal">
+						<div class="map-header">
+							<svg
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+								<circle cx="12" cy="10" r="3" />
+							</svg>
+							Мой кабинет на карте — Новосибирск
+						</div>
+						<iframe
+							src="https://yandex.ru/map-widget/v1/?ll=82.875938%2C54.969923&z=16&pt=82.875938%2C54.969923%2Cpm2rdm"
+							width="100%"
+							height="400"
+							frameborder="0"
+							allowfullscreen
+							title="Карта расположения кабинета логопеда-дефектолога в Новосибирске"
+							loading="lazy"
+							class="map-iframe"></iframe>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- =====================================================================
+       FOOTER
+  ====================================================================== -->
+		<footer class="footer">
+			<div class="container footer-inner">
+				<div class="footer-logo">
+					<span class="logo-icon">🗣</span>
+					<span class="logo-text">Я<strong> говорю!</strong></span>
+				</div>
+				<p class="footer-copy">
+					© 2026 Ирина Скорюпина. Логопед-дефектолог, Новосибирск.
+				</p>
+				<p class="footer-disclaimer">
+					Не является медицинской организацией. Образовательные и
+					коррекционно-педагогические услуги.
+				</p>
+			</div>
+		</footer>
+
+		<!-- Кнопка «наверх» -->
+		<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">
+			<svg
+				width="20"
+				height="20"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2.5">
+				<path d="M12 19V5M5 12l7-7 7 7" />
+			</svg>
+		</button>
+
+		<!-- Основной скрипт -->
+		<script src="app.js"></script>
+	</body>
+</html>
