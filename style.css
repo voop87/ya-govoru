@@ -1269,6 +1269,14 @@ input, select, textarea {
   gap: var(--sp-md);
 }
 
+@media all and (max-width: 767px) {
+	.review-card {
+		max-width: 286px;
+		margin: 0 auto;
+		padding: 16px;
+	}
+}
+
 .review-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
@@ -1479,6 +1487,12 @@ input, select, textarea {
 .contact-form {
   padding: var(--sp-2xl);
   position: relative;
+}
+
+@media all and (max-width: 767px) {
+	.contact-form {
+		padding: 20px;
+	}
 }
 
 .form-title {
