@@ -656,30 +656,29 @@ function reinitReveal(elements) {
 			method: "POST",
 			mode: "no-cors",
 			headers: {
-				"Content-Type": "application/json",
+				"Content-Type": "text/plain;charset=utf-8",
 			},
 			body: JSON.stringify(data),
-		})
-			.then(() => {
-				form.classList.add("is-sent");
+		}).catch((error) => console.error("Ошибка отправки:", error));
 
-				if (successMsg) {
-					successMsg.style.display = "block";
-					setTimeout(() => {
-						successMsg.classList.add("is-visible");
-					}, 20);
-				}
+		// Показываем успех через 300мс, не заставляя пользователя ждать ответа от Telegram
+		setTimeout(() => {
+			form.classList.add("is-sent");
 
-				form.reset();
-			})
-			.catch((error) => {
-				console.error("Ошибка отправки:", error);
-				alert("Произошла ошибка при отправке заявки. Попробуйте еще раз.");
+			if (successMsg) {
+				successMsg.style.display = "block";
+				setTimeout(() => {
+					successMsg.classList.add("is-visible");
+				}, 20);
+			}
 
-				submitBtn.disabled = false;
-				submitBtn.classList.remove("loading");
-				submitBtn.innerHTML = originalBtnHTML;
-			});
+			form.reset();
+
+			// Сбрасываем состояние кнопки
+			submitBtn.disabled = false;
+			submitBtn.classList.remove("loading");
+			submitBtn.innerHTML = originalBtnHTML;
+		}, 300);
 	});
 })();
 
