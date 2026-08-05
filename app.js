@@ -173,136 +173,194 @@
 })();
 
 /* ============================================================
-   4. GALLERY SLIDER
+   GALLERY SLIDERS & LIGHTBOX
    ============================================================ */
-(function initSlider() {
-	const track = document.getElementById("sliderTrack");
-	const dotsWrap = document.getElementById("sliderDots");
-	const prevBtn = document.getElementById("sliderPrev");
-	const nextBtn = document.getElementById("sliderNext");
+(function () {
+	/* ── 1. Полноэкранный просмотр (Lightbox) ── */
+	const lightbox = document.getElementById("lightbox");
+	const lightboxImg = document.getElementById("lightboxImg");
+	const lightboxClose = document.querySelector(".lightbox-close");
 
-	if (!track) return;
+	function openLightbox(src) {
+		if (!lightbox || !lightboxImg) return;
+		lightboxImg.src = src;
+		lightbox.classList.add("active");
+		document.body.style.overflow = "hidden"; // Блокируем скролл сайта
+	}
 
-	const slides = track.querySelectorAll(".slide");
-	const total = slides.length;
-	let currentIndex = 0;
-	let autoplayTimer = null;
-	let isDragging = false;
+	function closeLightbox() {
+		if (!lightbox) return;
+		lightbox.classList.remove("active");
+		document.body.style.overflow = ""; // Возвращаем скролл
+	}
 
-	/* ── Создаём точки-пагинацию ── */
-	slides.forEach((_, i) => {
-		const dot = document.createElement("button");
-		dot.className = "slider-dot" + (i === 0 ? " active" : "");
-		dot.setAttribute("aria-label", `Слайд ${i + 1}`);
-		dot.addEventListener("click", () => goTo(i));
-		dotsWrap.appendChild(dot);
+	lightboxClose?.addEventListener("click", closeLightbox);
+	lightbox?.addEventListener("click", (e) => {
+		if (e.target === lightbox) closeLightbox();
 	});
-
-	const dots = dotsWrap.querySelectorAll(".slider-dot");
-
-	/* ── Переход к слайду ── */
-	function goTo(index) {
-		currentIndex = (index + total) % total;
-		track.style.transform = `translateX(-${currentIndex * 100}%)`;
-		// Обновляем точки
-		dots.forEach((d, i) => d.classList.toggle("active", i === currentIndex));
-		resetAutoplay();
-	}
-
-	function goNext() {
-		goTo(currentIndex + 1);
-	}
-	function goPrev() {
-		goTo(currentIndex - 1);
-	}
-
-	/* ── Кнопки навигации ── */
-	nextBtn?.addEventListener("click", goNext);
-	prevBtn?.addEventListener("click", goPrev);
-
-	/* ── Клавиатурная навигация ── */
 	document.addEventListener("keydown", (e) => {
-		if (e.key === "ArrowRight") goNext();
-		if (e.key === "ArrowLeft") goPrev();
+		if (e.key === "Escape") closeLightbox();
 	});
 
-	/* ── Автопрокрутка ── */
-	function startAutoplay() {
-		autoplayTimer = setInterval(goNext, 4500);
-	}
+	/* ── 2. Универсальная инициализация слайдеров ── */
+	function initSliders() {
+		const sliderWraps = document.querySelectorAll(".slider-wrap");
 
-	function resetAutoplay() {
-		clearInterval(autoplayTimer);
-		startAutoplay();
-	}
+		sliderWraps.forEach((wrap) => {
+			const track = wrap.querySelector(".slider-track");
+			const dotsWrap = wrap.querySelector(".slider-dots");
+			const prevBtn = wrap.querySelector(".slider-btn--prev");
+			const nextBtn = wrap.querySelector(".slider-btn--next");
 
-	startAutoplay();
+			if (!track) return;
 
-	/* ── Touch / Swipe поддержка ── */
-	let touchStartX = 0;
-	let touchStartY = 0;
-	const SWIPE_THRESHOLD = 50; // px
+			const slides = track.querySelectorAll(".slide");
+			const total = slides.length;
+			let currentIndex = 0;
+			let autoplayTimer = null;
+			let isDragging = false;
+			let dragOffset = 0;
 
-	track.addEventListener(
-		"touchstart",
-		(e) => {
-			touchStartX = e.changedTouches[0].clientX;
-			touchStartY = e.changedTouches[0].clientY;
-			isDragging = true;
-		},
-		{ passive: true },
-	);
-
-	track.addEventListener(
-		"touchend",
-		(e) => {
-			if (!isDragging) return;
-			isDragging = false;
-
-			const deltaX = e.changedTouches[0].clientX - touchStartX;
-			const deltaY = e.changedTouches[0].clientY - touchStartY;
-
-			// Убеждаемся, что это горизонтальный свайп (не вертикальный скролл)
-			if (
-				Math.abs(deltaX) > Math.abs(deltaY) &&
-				Math.abs(deltaX) > SWIPE_THRESHOLD
-			) {
-				if (deltaX < 0) goNext();
-				else goPrev();
+			/* Создание точек-пагинации */
+			if (dotsWrap) {
+				dotsWrap.innerHTML = "";
+				slides.forEach((_, i) => {
+					const dot = document.createElement("button");
+					dot.className = "slider-dot" + (i === 0 ? " active" : "");
+					dot.setAttribute("aria-label", `Слайд ${i + 1}`);
+					dot.addEventListener("click", () => goTo(i));
+					dotsWrap.appendChild(dot);
+				});
 			}
-		},
-		{ passive: true },
-	);
 
-	/* ── Drag (мышь) ── */
-	let mouseStartX = 0;
+			const dots = dotsWrap ? dotsWrap.querySelectorAll(".slider-dot") : [];
 
-	track.addEventListener("mousedown", (e) => {
-		mouseStartX = e.clientX;
-		isDragging = true;
-		track.style.cursor = "grabbing";
-	});
+			/* Переход к слайду */
+			function goTo(index) {
+				currentIndex = (index + total) % total;
+				track.style.transform = `translateX(-${currentIndex * 100}%)`;
+				dots.forEach((d, i) =>
+					d.classList.toggle("active", i === currentIndex),
+				);
+				resetAutoplay();
+			}
 
-	track.addEventListener("mouseup", (e) => {
-		if (!isDragging) return;
-		isDragging = false;
-		track.style.cursor = "";
-		const delta = e.clientX - mouseStartX;
-		if (Math.abs(delta) > SWIPE_THRESHOLD) {
-			if (delta < 0) goNext();
-			else goPrev();
-		}
-	});
+			function goNext() {
+				goTo(currentIndex + 1);
+			}
+			function goPrev() {
+				goTo(currentIndex - 1);
+			}
 
-	track.addEventListener("mouseleave", () => {
-		isDragging = false;
-		track.style.cursor = "";
-	});
+			/* Кнопки навигации */
+			nextBtn?.addEventListener("click", goNext);
+			prevBtn?.addEventListener("click", goPrev);
 
-	/* ── Пауза при hover ── */
-	const sliderEl = document.getElementById("mainSlider");
-	sliderEl?.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
-	sliderEl?.addEventListener("mouseleave", startAutoplay);
+			/* Автопрокрутка */
+			function startAutoplay() {
+				autoplayTimer = setInterval(goNext, 4500);
+			}
+
+			function resetAutoplay() {
+				clearInterval(autoplayTimer);
+				startAutoplay();
+			}
+
+			startAutoplay();
+
+			/* Пауза при наведении */
+			wrap.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
+			wrap.addEventListener("mouseleave", startAutoplay);
+
+			/* Клик по слайду -> Полноэкранный просмотр */
+			slides.forEach((slide) => {
+				const img = slide.querySelector("img");
+				if (!img) return;
+
+				slide.addEventListener("click", () => {
+					// Открываем модальное окно только если не происходил свайп
+					if (Math.abs(dragOffset) < 10) {
+						openLightbox(img.src);
+					}
+				});
+			});
+
+			/* Touch / Swipe поддержка */
+			let startX = 0;
+			let startY = 0;
+			const SWIPE_THRESHOLD = 50;
+
+			track.addEventListener(
+				"touchstart",
+				(e) => {
+					startX = e.changedTouches[0].clientX;
+					startY = e.changedTouches[0].clientY;
+					dragOffset = 0; // Сбрасываем смещение в начале касания
+					isDragging = true;
+				},
+				{ passive: true },
+			);
+
+			track.addEventListener(
+				"touchmove",
+				(e) => {
+					if (!isDragging) return;
+					const currentX = e.changedTouches[0].clientX;
+					dragOffset = currentX - startX; // Фиксируем движение пальца
+				},
+				{ passive: true },
+			);
+
+			track.addEventListener(
+				"touchend",
+				(e) => {
+					if (!isDragging) return;
+					isDragging = false;
+
+					const deltaX = e.changedTouches[0].clientX - startX;
+					const deltaY = e.changedTouches[0].clientY - startY;
+					dragOffset = deltaX;
+
+					if (
+						Math.abs(deltaX) > Math.abs(deltaY) &&
+						Math.abs(deltaX) > SWIPE_THRESHOLD
+					) {
+						if (deltaX < 0) goNext();
+						else goPrev();
+					}
+				},
+				{ passive: true },
+			);
+
+			/* Drag (Мышь) */
+			track.addEventListener("mousedown", (e) => {
+				startX = e.clientX;
+				dragOffset = 0;
+				isDragging = true;
+				track.style.cursor = "grabbing";
+			});
+
+			track.addEventListener("mouseup", (e) => {
+				if (!isDragging) return;
+				isDragging = false;
+				track.style.cursor = "";
+				const deltaX = e.clientX - startX;
+				dragOffset = deltaX;
+
+				if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+					if (deltaX < 0) goNext();
+					else goPrev();
+				}
+			});
+
+			track.addEventListener("mouseleave", () => {
+				isDragging = false;
+				track.style.cursor = "";
+			});
+		});
+	}
+
+	initSliders();
 })();
 
 /* ============================================================
@@ -705,16 +763,81 @@ function reinitReveal(elements) {
 	});
 })();
 
-/* ============================================================
-   12. PERFORMANCE — Preload & Init logging
-   ============================================================ */
-window.addEventListener("load", () => {
-	// Логируем время загрузки в дев-режиме
-	if (window.performance && console) {
-		const loadTime = Math.round(performance.now());
-		console.info(
-			`%c🗣 Логопед-Дефектолог | Страница загружена за ${loadTime}ms`,
-			"color:#0D9488;font-weight:bold;",
-		);
-	}
+document.addEventListener("DOMContentLoaded", () => {
+	const form = document.getElementById("contactForm");
+	const submitBtn = document.getElementById("formSubmitBtn");
+	const successMessage = document.getElementById("formSuccess");
+
+	// URL вашего веб-приложения Google Apps Script
+	const GOOGLE_SCRIPT_URL =
+		"https://script.google.com/macros/s/AKfycby3rNlcAvqJyFS6r4Qd-moliRjoDF4jH4s76i4UUN63UBjQvAxXLy0ER9FRQ8wsVzaL/exec";
+
+	// Исходное содержимое кнопки (чтобы восстановить в случае ошибки)
+	const originalBtnHTML = submitBtn.innerHTML;
+
+	// Иконка-спиннер (SVG вращающееся колесико)
+	const spinnerSVG = `
+    <svg class="btn-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <circle cx="12" cy="12" r="10" stroke-opacity="0.25" />
+      <path d="M12 2 a10 10 0 0 1 10 10" stroke-linecap="round" />
+    </svg>
+  `;
+
+	form.addEventListener("submit", function (e) {
+		e.preventDefault();
+
+		// 1. Собираем данные формы
+		const formData = new FormData(this);
+		const data = {
+			name: formData.get("name") ? formData.get("name").trim() : "",
+			phone: formData.get("phone") ? formData.get("phone").trim() : "",
+			msg: formData.get("description")
+				? formData.get("description").trim()
+				: "",
+		};
+
+		// Простая проверка обязательных полей
+		if (!data.name || !data.phone) {
+			alert("Пожалуйста, заполните имя и телефон");
+			return;
+		}
+
+		// 2. Блокируем кнопку и включаем лоадер
+		submitBtn.disabled = true;
+		submitBtn.classList.add("loading");
+		submitBtn.innerHTML = `${spinnerSVG} Отправляю...`;
+
+		// 3. Отправляем данные на Google Apps Script
+		fetch(GOOGLE_SCRIPT_URL, {
+			method: "POST",
+			mode: "no-cors",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		})
+			.then(() => {
+				// 4. Успешная отправка: скрываем поля формы и мягко проявляем сообщение
+				form.classList.add("is-sent");
+
+				if (successMessage) {
+					// Вызываем через requestAnimationFrame/setTimeout для запуска CSS-перехода
+					successMessage.style.display = "block";
+					setTimeout(() => {
+						successMessage.classList.add("is-visible");
+					}, 20);
+				}
+
+				form.reset();
+			})
+			.catch((error) => {
+				console.error("Ошибка отправки:", error);
+				alert("Произошла ошибка при отправке заявки. Попробуйте еще раз.");
+
+				// При ошибке разблокируем кнопку
+				submitBtn.disabled = false;
+				submitBtn.classList.remove("loading");
+				submitBtn.innerHTML = originalBtnHTML;
+			});
+	});
 });

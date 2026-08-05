@@ -1,11 +1,80 @@
 /* ============================================================
-   STYLE.CSS — Логопед-Дефектолог Landing Page
-   Чистый, продакшн-готовый CSS без лишних утилит
+   LOCAL FONTS CONNECTION
    ============================================================ */
 
-/* ── Google Fonts ── */
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap");
+/* ── NUNITO ── */
+@font-face {
+	font-family: "Nunito";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("./fonts/nunito-v32-cyrillic_latin-regular.woff2") format("woff2");
+}
 
+@font-face {
+	font-family: "Nunito";
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url("./fonts/nunito-v32-cyrillic_latin-600.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Nunito";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("./fonts/nunito-v32-cyrillic_latin-700.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Nunito";
+	font-style: normal;
+	font-weight: 800;
+	font-display: swap;
+	src: url("./fonts/nunito-v32-cyrillic_latin-800.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Nunito";
+	font-style: normal;
+	font-weight: 900;
+	font-display: swap;
+	src: url("./fonts/nunito-v32-cyrillic_latin-900.woff2") format("woff2");
+}
+
+/* ── INTER ── */
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src: url("./fonts/inter-v20-cyrillic_latin-300.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("./fonts/inter-v20-cyrillic_latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url("./fonts/inter-v20-cyrillic_latin-500.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url("./fonts/inter-v20-cyrillic_latin-600.woff2") format("woff2");
+}
 /* ============================================================
    1. ДИЗАЙН-ТОКЕНЫ (CSS CUSTOM PROPERTIES)
    ============================================================ */
@@ -76,7 +145,7 @@
 	--transition-slow: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 
 	/* Навигация */
-	--nav-height: 72px;
+	--nav-height: 100px;
 }
 
 /* ============================================================
@@ -248,25 +317,13 @@ textarea {
 	height: var(--nav-height);
 	display: flex;
 	align-items: center;
-	background: transparent;
-	transition:
-		background 0.35s ease,
-		box-shadow 0.35s ease,
-		backdrop-filter 0.35s ease;
-}
-
-.nav-header.scrolled {
 	background: rgba(255, 255, 255, 0.94);
 	backdrop-filter: blur(16px);
 	-webkit-backdrop-filter: blur(16px);
 	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
-.nav-header.scrolled .nav-link {
-	color: var(--color-secondary);
-}
-
-.nav-header.scrolled .nav-logo {
+.nav-header .nav-link {
 	color: var(--color-secondary);
 }
 
@@ -277,20 +334,14 @@ textarea {
 }
 
 .nav-logo {
-	display: flex;
-	align-items: center;
-	gap: var(--sp-sm);
-	font-family: var(--font-heading);
-	font-weight: 800;
-	font-size: var(--fs-xl);
-	color: #fff;
-	letter-spacing: -0.3px;
-	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-	flex-shrink: 0;
+	display: block;
+	max-width: 200px;
 }
 
-.nav-header.scrolled .nav-logo {
-	text-shadow: none;
+@media all and (max-width: 768px) {
+	.nav-logo {
+		max-width: 120px;
+	}
 }
 
 .logo-icon {
@@ -336,7 +387,7 @@ textarea {
 	width: 100%;
 }
 
-.nav-header.scrolled .nav-link {
+.nav-header .nav-link {
 	text-shadow: none;
 }
 
@@ -358,7 +409,7 @@ textarea {
 	transition: var(--transition-base);
 }
 
-.nav-header.scrolled .nav-burger span {
+.nav-header .nav-burger span {
 	background: var(--color-secondary);
 }
 
@@ -754,7 +805,7 @@ textarea {
 
 .cards-grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	gap: var(--sp-xl);
 }
 
@@ -778,7 +829,6 @@ textarea {
 .spec-card--featured {
 	background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
 	border: 2px solid rgba(244, 63, 94, 0.2);
-	grid-column: 2;
 }
 
 .spec-card--featured:hover {
@@ -899,15 +949,17 @@ textarea {
 }
 
 .about-photo {
+	position: relative;
 	max-width: 400px;
 	border-radius: var(--radius-xl);
 	overflow: hidden;
+	margin: 0 auto;
 }
 
 .about-badge-float {
 	position: absolute;
-	bottom: -1rem;
-	right: -1rem;
+	bottom: 0;
+	right: 0;
 	width: 90px;
 	height: 90px;
 	border-radius: 50%;
@@ -940,6 +992,7 @@ textarea {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: var(--sp-md);
+	margin-bottom: var(--sp-md);
 }
 
 .cert-item {
@@ -1152,20 +1205,72 @@ textarea {
 }
 
 .slider {
-	overflow: hidden;
-	border-radius: var(--radius-xl);
-	box-shadow: var(--shadow-lg);
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden; /* Жестко скрывает соседние слайды */
+	border-radius: var(--radius-xl, 12px);
+	position: relative;
+	box-sizing: border-box;
 }
 
 .slider-track {
 	display: flex;
+	width: 100%;
 	transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 	will-change: transform;
+	box-sizing: border-box;
 }
 
 .slide {
+	cursor: pointer;
 	min-width: 100%;
 	flex-shrink: 0;
+}
+
+.slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.slide-2 {
+	min-width: 100%;
+	max-width: 100%;
+	flex: 0 0 100%;
+	box-sizing: border-box;
+
+	height: 480px; /* Высота под мобильные */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--color-bg-alt, #f8fafc);
+	overflow: hidden;
+}
+
+.slide-2 img {
+	width: 100%;
+	height: 100%;
+	/* 
+     contain — показывает весь сертификат целиком без обрезки edges.
+     Если хотите, чтобы не было полей по бокам/сверху — замените на cover.
+  */
+	object-fit: contain;
+	display: block;
+	pointer-events: auto;
+}
+
+/* Ограничение высоты слайдера на планшетах и мобильных */
+@media (max-width: 1023px) {
+	.slide-2 {
+		height: 360px; /* Уменьшаем высоту на планшетах */
+	}
+}
+
+@media (max-width: 576px) {
+	.slide-2 {
+		height: 280px; /* Компактная высота на смартфонах */
+	}
 }
 
 .slide-placeholder {
@@ -1249,6 +1354,89 @@ textarea {
 	background: var(--color-primary);
 	transform: scale(1.3);
 	box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+}
+/* ============================================================
+   LIGHTBOX (Адаптированный под мобильные)
+   ============================================================ */
+.lightbox {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.9);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+	padding: 20px;
+}
+
+.lightbox.active {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.lightbox-content {
+	max-width: 95%;
+	max-height: 90vh;
+	object-fit: contain;
+	border-radius: var(--radius-xl, 8px);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+	transform: scale(0.95);
+	transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-content {
+	transform: scale(1);
+}
+
+.lightbox-close {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	color: #fff;
+	font-size: 36px;
+	font-weight: bold;
+	cursor: pointer;
+	user-select: none;
+	z-index: 1001;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+	line-height: 1;
+	transition: transform 0.2s ease;
+}
+
+.lightbox-close:hover {
+	transform: scale(1.15);
+}
+
+/* Специфичные правки для мобильных устройств (< 768px) */
+@media (max-width: 767px) {
+	.lightbox {
+		padding: 5px; /* Минимальный padding, чтобы расширить картинку */
+	}
+
+	.lightbox-content {
+		max-width: 100%; /* Картинка берет максимальную доступную ширину */
+		max-height: 95vh;
+		border-radius: 4px;
+	}
+
+	.lightbox-close {
+		top: 10px;
+		right: 15px;
+		font-size: 32px;
+		background: rgba(0, 0, 0, 0.4);
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
 
 /* ============================================================
@@ -1349,7 +1537,6 @@ textarea {
 
 @media all and (max-width: 767px) {
 	.review-card {
-		max-width: 286px;
 		margin: 0 auto;
 		padding: 16px;
 	}
@@ -1745,7 +1932,7 @@ textarea {
    14. FOOTER
    ============================================================ */
 .footer {
-	background: var(--color-secondary);
+	background: #3c495f;
 	color: rgba(255, 255, 255, 0.7);
 	padding-block: var(--sp-2xl);
 }
@@ -1761,11 +1948,7 @@ textarea {
 .footer-logo {
 	display: flex;
 	align-items: center;
-	gap: var(--sp-sm);
-	font-family: var(--font-heading);
-	font-weight: 800;
-	font-size: var(--fs-xl);
-	color: #fff;
+	max-width: 200px;
 	margin-bottom: var(--sp-sm);
 }
 
@@ -1904,6 +2087,10 @@ textarea {
 	.process-step {
 		min-width: calc(50% - var(--sp-xl));
 	}
+
+	.reviews-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 /* ── Мобильный (до 768px) ── */
@@ -1955,7 +2142,7 @@ textarea {
 
 	/* Отзывы */
 	.reviews-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(1, 1fr);
 	}
 
 	/* Слайдер */
@@ -2031,4 +2218,91 @@ textarea {
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 	}
+}
+/* Стили для лоадера внутри кнопки */
+.btn-form-submit.loading {
+	opacity: 0.8;
+	cursor: not-allowed;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+/* Анимация вращения иконки */
+.btn-spinner {
+	animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+/* ============================================================
+   FORM SUCCESS STYLES & ANIMATION
+   ============================================================ */
+
+/* Скрываем блок успеха по умолчанию */
+.form-success {
+	display: none;
+	opacity: 0;
+	transform: translateY(15px);
+	transition:
+		opacity 0.4s ease,
+		transform 0.4s ease;
+	text-align: center;
+	padding: 32px 24px;
+	background: rgba(255, 255, 255, 0.95);
+	border: 2px solid #e2e8f0;
+	border-radius: 16px;
+	box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+/* Класс для плавной активации анимации */
+.form-success.is-visible {
+	display: block;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Красивый стилизованный кружок с иконкой */
+.form-success .success-icon {
+	width: 56px;
+	height: 56px;
+	background: #def7ec;
+	color: #0e9f6e;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28px;
+	margin: 0 auto 16px auto;
+	box-shadow: 0 4px 12px rgba(14, 159, 110, 0.15);
+}
+
+.form-success h4 {
+	font-size: 20px;
+	font-weight: 700;
+	color: #1a202c;
+	margin-bottom: 8px;
+}
+
+.form-success p {
+	font-size: 15px;
+	color: #4a5568;
+	line-height: 1.5;
+	margin: 0;
+}
+
+/* Скрываем элементы формы при успешной отправке */
+.contact-form.is-sent .form-title,
+.contact-form.is-sent .form-subtitle,
+.contact-form.is-sent .form-group,
+.contact-form.is-sent .btn-form-submit,
+.contact-form.is-sent .form-privacy {
+	display: none !important;
 }

@@ -8,17 +8,17 @@
 			content="Логопед-дефектолог в Новосибирске. Запуск речи, АВА-терапия, работа с РАС, ЗПР. Запишитесь на консультацию онлайн." />
 		<title>Логопед-Дефектолог | Запуск речи и АВА-терапия — Новосибирск</title>
 
-		<!-- Google Fonts: Nunito + Inter с поддержкой кириллицы -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
-			rel="stylesheet" />
-
 		<!-- Rellax.js — лёгкая библиотека параллакса (Vanilla JS) -->
-		<script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
+		<script src="./rellax.min.js"></script>
 
 		<link rel="stylesheet" href="style.css" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta
+			http-equiv="Content-Security-Policy"
+			content="font-src 'self' data: https: https://yandex.ru *.yandex.ru *.yastatic.net yastatic.net;" />
 	</head>
 
 	<body>
@@ -28,8 +28,7 @@
 		<header class="nav-header" id="mainNav">
 			<div class="container nav-inner">
 				<a href="#hero" class="nav-logo">
-					<span class="logo-icon">🗣</span>
-					<span class="logo-text">Я<strong> говорю!</strong></span>
+					<img src="./images/logo.svg" alt="Логотип Я Говорю!" />
 				</a>
 				<nav class="nav-links" id="navLinks">
 					<a href="#specializations" class="nav-link">Специализация</a>
@@ -249,7 +248,7 @@
 					</div>
 
 					<h1 class="hero-title fade-in-up" style="animation-delay: 0.15s">
-						От первых звуков - к<br />
+						От первых звуков - к
 						<span class="hero-title-accent">свободному общению</span>
 					</h1>
 
@@ -336,36 +335,6 @@
 					</div>
 
 					<div class="cards-grid">
-						<!-- Карточка 1 -->
-						<article class="spec-card reveal" style="--card-color: #0d9488">
-							<div class="spec-card-icon">
-								<svg
-									width="36"
-									height="36"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="1.8">
-									<path
-										d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-								</svg>
-							</div>
-							<h3 class="spec-card-title">Запуск речи</h3>
-							<p class="spec-card-text">
-								Развитие слухового внимания, понимания речи, формирование 
-								высших психических функций:
-							</p>
-							<ul class="spec-card-list">
-								<li>Память</li>
-								<li>Внимание</li>
-								<li>Мышление</li>
-								<li>Восприятие</li>
-								<li>Воображение</li>
-								<li>Речь</li>
-							</ul>
-							<div class="spec-card-accent"></div>
-						</article>
-
 						<!-- Карточка 2 -->
 						<article
 							class="spec-card spec-card--featured reveal"
@@ -400,9 +369,8 @@
 							</ul>
 							<div class="spec-card-accent"></div>
 						</article>
-
-						<!-- Карточка 3 -->
-						<article class="spec-card reveal" style="--card-color: #f59e0b">
+						<!-- Карточка 1 -->
+						<article class="spec-card reveal" style="--card-color: #0d9488">
 							<div class="spec-card-icon">
 								<svg
 									width="36"
@@ -411,26 +379,28 @@
 									fill="none"
 									stroke="currentColor"
 									stroke-width="1.8">
-									<circle cx="12" cy="12" r="10" />
-									<path d="M12 8v4l3 3" />
+									<path
+										d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
 								</svg>
 							</div>
-							<h3 class="spec-card-title">Сенсорная интеграция</h3>
+							<h3 class="spec-card-title">Запуск речи</h3>
 							<p class="spec-card-text">
-								Помогаем нервной системе ребёнка правильно обрабатывать
-								сенсорные сигналы. Снижение гиперчувствительности и работа с
-								сенсорными «голодом» и защитами.
+								Развитие слухового внимания, понимания речи, формирование 
+								высших психических функций:
 							</p>
 							<ul class="spec-card-list">
-								<li>Оценка сенсорного профиля</li>
-								<li>Адаптированные сенсорные диеты</li>
-								<li>Снижение стрессовой нагрузки</li>
+								<li>Память</li>
+								<li>Внимание</li>
+								<li>Мышление</li>
+								<li>Восприятие</li>
+								<li>Воображение</li>
+								<li>Речь</li>
 							</ul>
 							<div class="spec-card-accent"></div>
 						</article>
 
-						<!-- Карточка 4 -->
-						<article class="spec-card reveal" style="--card-color: #6366f1">
+						<!-- Карточка 3 -->
+						<article class="spec-card reveal" style="--card-color: #f59e0b">
 							<div class="spec-card-icon">
 								<svg
 									width="36"
@@ -445,44 +415,21 @@
 										d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
 								</svg>
 							</div>
-							<h3 class="spec-card-title">ЗПР и ЗРР</h3>
-							<p class="spec-card-text">
-								Задержка психоречевого и речевого развития — области нашей
-								ключевой экспертизы. Диагностика, составление маршрута и
-								системная работа для достижения возрастной нормы.
-							</p>
-							<ul class="spec-card-list">
-								<li>Комплексная диагностика</li>
-								<li>Когнитивное развитие</li>
-								<li>Подготовка к школе</li>
-							</ul>
-							<div class="spec-card-accent"></div>
-						</article>
+							<h3 class="spec-card-title">Коррекция звукопроизношения</h3>
 
-						<!-- Карточка 5 -->
-						<article class="spec-card reveal" style="--card-color: #10b981">
-							<div class="spec-card-icon">
-								<svg
-									width="36"
-									height="36"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="1.8">
-									<path d="M12 2L2 7l10 5 10-5-10-5z" />
-									<path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-								</svg>
-							</div>
-							<h3 class="spec-card-title">PECS и ААС</h3>
-							<p class="spec-card-text">
-								Система обмена изображениями (PECS) и
-								альтернативная/дополнительная коммуникация — мостик к
-								полноценной речи для детей с тяжёлыми нарушениями коммуникации.
-							</p>
 							<ul class="spec-card-list">
-								<li>6 этапов PECS-программы</li>
-								<li>Коммуникативные устройства и карточки</li>
-								<li>Обучение семьи</li>
+								<li>
+									Развитие фонематического слуха (различение звуков на слух)
+								</li>
+								<li>Развитие речевого дыхания</li>
+								<li>
+									Развитие артикуляционной моторики (артикуляционная гимнастика)
+								</li>
+								<li>
+									Нормализация мышечного тонуса артикуляционного аппарата
+									(массаж)
+								</li>
+								<li>Постановка звуков, автоматизация</li>
 							</ul>
 							<div class="spec-card-accent"></div>
 						</article>
@@ -533,12 +480,11 @@
 										width="400"
 										height="600"
 										alt="Логопед - Ирина Скорюпина" />
-								</div>
-
-								<!-- Floating badge -->
-								<div class="about-badge-float">
-									<span class="badge-float-num">10+</span>
-									<span class="badge-float-text">лет<br />практики</span>
+									<!-- Floating badge -->
+									<div class="about-badge-float">
+										<span class="badge-float-num">10+</span>
+										<span class="badge-float-text">лет<br />практики</span>
+									</div>
 								</div>
 							</div>
 
@@ -572,6 +518,76 @@
 										<span>STAR Institute, 2022</span>
 									</div>
 								</div>
+							</div>
+
+							<!-- Слайдер -->
+							<div class="slider-wrap reveal">
+								<div class="slider">
+									<div class="slider-track">
+										<!-- Слайды (плейсхолдеры) -->
+										<div class="slide slide-2">
+											<img src="./images/1.jpg" alt="Сертификат 1" />
+										</div>
+										<div class="slide slide-2">
+											<img src="./images/2.jpg" alt="Сертификат 2" />
+										</div>
+										<div class="slide slide-2">
+											<img src="./images/3.jpg" alt="Сертификат 3" />
+										</div>
+										<div class="slide slide-2">
+											<img src="./images/4.jpg" alt="Сертификат 4" />
+										</div>
+										<div class="slide slide-2">
+											<img src="./images/5.jpg" alt="Сертификат 5" />
+										</div>
+										<div class="slide slide-2">
+											<img src="./images/6.jpg" alt="Сертификат 6" />
+										</div>
+										<div class="slide slide-2">
+											<img src="./images/7.jpg" alt="Сертификат 7" />
+										</div>
+										<div class="slide slide-2">
+											<img src="./images/8.jpg" alt="Сертификат 8" />
+										</div>
+										<div class="slide slide-2">
+											<img src="./images/9.jpg" alt="Сертификат 9" />
+										</div>
+										<div class="slide slide-2">
+											<img src="./images/10.jpg" alt="Сертификат 10" />
+										</div>
+									</div>
+								</div>
+
+								<!-- Навигация -->
+								<button
+									class="slider-btn slider-btn--prev"
+									aria-label="Предыдущий слайд">
+									<svg
+										width="22"
+										height="22"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2.5">
+										<path d="M15 18l-6-6 6-6" />
+									</svg>
+								</button>
+								<button
+									class="slider-btn slider-btn--next"
+									aria-label="Следующий слайд">
+									<svg
+										width="22"
+										height="22"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2.5">
+										<path d="M9 18l6-6-6-6" />
+									</svg>
+								</button>
+
+								<!-- Точки -->
+								<div class="slider-dots"></div>
 							</div>
 						</div>
 
@@ -1197,8 +1213,7 @@
 		<footer class="footer">
 			<div class="container footer-inner">
 				<div class="footer-logo">
-					<span class="logo-icon">🗣</span>
-					<span class="logo-text">Я<strong> говорю!</strong></span>
+					<img src="./images/logo.svg" alt="Логотип Я Говорю!" />
 				</div>
 				<p class="footer-copy">
 					© 2026 Ирина Скорюпина. Логопед-дефектолог, Новосибирск.
@@ -1223,6 +1238,14 @@
 			</svg>
 		</button>
 
+		<!-- Модальное окно для полноэкранного просмотра (добавить 1 раз в конце body) -->
+		<div class="lightbox" id="lightbox">
+			<span class="lightbox-close">&times;</span>
+			<img
+				class="lightbox-content"
+				id="lightboxImg"
+				alt="Увеличенное изображение" />
+		</div>
 		<!-- Основной скрипт -->
 		<script src="app.js"></script>
 	</body>
