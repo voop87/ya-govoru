@@ -615,41 +615,43 @@ function reinitReveal(elements) {
 	form.addEventListener("submit", function (e) {
 		e.preventDefault();
 
-		// 1. ПРОВЕРКА HONEYPOT (Проверка ловушки для ботов)
-		const honeypot = formData.get("website");
+		// 1. СОБИРАЕМ ДАННЫЕ В НАЧАЛЕ
+		const formData = new FormData(this);
+
+		// 2. ПРОВЕРКА HONEYPOT (Проверка ловушки для ботов)
+		const honeypot = formData.get("phone");
 		if (honeypot && honeypot.trim() !== "") {
 			console.warn("Spam detected via Honeypot.");
 
-			// Делаем вид, что всё успешно отправилось, но ничего не отправляем
+			// Имитируем успешную отправку для бота
 			form.classList.add("is-sent");
 			if (successMsg) {
 				successMsg.style.display = "block";
 				setTimeout(() => successMsg.classList.add("is-visible"), 20);
 			}
 			form.reset();
-			return; // Прерываем выполнение!
+			return; // Прерываем отправку!
 		}
 
-		// 2. Кастомная валидация полей
+		// 3. Кастомная валидация полей
 		if (!validateForm()) return;
 
-		// 3. Блокируем кнопку и включаем лоадер
+		// 4. Блокируем кнопку и включаем лоадер
 		submitBtn.disabled = true;
 		submitBtn.classList.add("loading");
 		submitBtn.innerHTML = `${spinnerSVG} Отправляю...`;
 
-		// 4. Собираем данные
-		const formData = new FormData(this);
+		// 5. Формируем JSON объект
 		const data = {
 			name: formData.get("name") ? formData.get("name").trim() : "",
 			phone: formData.get("phone2") ? formData.get("phone2").trim() : "",
 			msg: formData.get("description")
 				? formData.get("description").trim()
 				: "",
-			website: formData.get("website") ? formData.get("website").trim() : "", // Передаем Honeypot
+			website: formData.get("phone") ? formData.get("phone").trim() : "",
 		};
 
-		// 5. Отправка в Google Apps Script
+		// 6. Отправка в Google Apps Script
 		fetch(GOOGLE_SCRIPT_URL, {
 			method: "POST",
 			mode: "no-cors",
