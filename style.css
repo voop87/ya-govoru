@@ -242,10 +242,12 @@ textarea {
 
 /* Primary (изумрудная) */
 .btn-primary {
+	display: block;
 	background: var(--color-primary);
 	color: #fff;
 	border-color: var(--color-primary);
 	box-shadow: 0 4px 16px rgba(13, 148, 136, 0.35);
+	text-align: center;
 }
 
 .btn-primary:hover,
