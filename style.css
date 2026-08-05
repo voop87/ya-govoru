@@ -2312,3 +2312,13 @@ textarea {
 .contact-form.is-sent {
 	min-height: 220px;
 }
+
+/* Скрытие Honeypot поля для защиты от спама */
+.hp-field {
+	display: none !important;
+	visibility: hidden !important;
+	position: absolute !important;
+	left: -9999px !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+}

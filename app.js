@@ -544,7 +544,7 @@ function reinitReveal(elements) {
 }
 
 /* ============================================================
-   7. CONTACT FORM — Валидация + Google Apps Script Submit
+   7. CONTACT FORM — Валидация + Google Apps Script Submit + Honeypot
    ============================================================ */
 (function initContactForm() {
 	const form = document.getElementById("contactForm");
@@ -611,29 +611,45 @@ function reinitReveal(elements) {
 		input?.addEventListener("change", () => validateField(cfg));
 	});
 
-	/** Единственный обработчик отправки формы */
+	/** Обработчик отправки формы */
 	form.addEventListener("submit", function (e) {
 		e.preventDefault();
 
-		// 1. Запускаем кастомную валидацию
+		// 1. ПРОВЕРКА HONEYPOT (Проверка ловушки для ботов)
+		const honeypot = formData.get("website");
+		if (honeypot && honeypot.trim() !== "") {
+			console.warn("Spam detected via Honeypot.");
+
+			// Делаем вид, что всё успешно отправилось, но ничего не отправляем
+			form.classList.add("is-sent");
+			if (successMsg) {
+				successMsg.style.display = "block";
+				setTimeout(() => successMsg.classList.add("is-visible"), 20);
+			}
+			form.reset();
+			return; // Прерываем выполнение!
+		}
+
+		// 2. Кастомная валидация полей
 		if (!validateForm()) return;
 
-		// 2. Блокируем кнопку и включаем лоадер
+		// 3. Блокируем кнопку и включаем лоадер
 		submitBtn.disabled = true;
 		submitBtn.classList.add("loading");
 		submitBtn.innerHTML = `${spinnerSVG} Отправляю...`;
 
-		// 3. Собираем данные
+		// 4. Собираем данные
 		const formData = new FormData(this);
 		const data = {
 			name: formData.get("name") ? formData.get("name").trim() : "",
-			phone: formData.get("phone") ? formData.get("phone").trim() : "",
+			phone: formData.get("phone2") ? formData.get("phone2").trim() : "",
 			msg: formData.get("description")
 				? formData.get("description").trim()
 				: "",
+			website: formData.get("website") ? formData.get("website").trim() : "", // Передаем Honeypot
 		};
 
-		// 4. Отправляем в Google Apps Script
+		// 5. Отправка в Google Apps Script
 		fetch(GOOGLE_SCRIPT_URL, {
 			method: "POST",
 			mode: "no-cors",
@@ -643,7 +659,6 @@ function reinitReveal(elements) {
 			body: JSON.stringify(data),
 		})
 			.then(() => {
-				// Успешная отправка
 				form.classList.add("is-sent");
 
 				if (successMsg) {

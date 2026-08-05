@@ -1060,7 +1060,15 @@
 								<p class="form-subtitle">
 									Заполните форму — я свяжусь с вами в рабочее время
 								</p>
-
+								<!-- Honeypot поле (защита от спама) -->
+								<div class="hp-field" aria-hidden="true">
+									<input
+										type="text"
+										id="fieldWebsite"
+										name="phone"
+										tabindex="-1"
+										autocomplete="off" />
+								</div>
 								<div class="form-group">
 									<label for="fieldName" class="form-label"
 										>Ваше имя <span class="required">*</span></label
@@ -1082,7 +1090,7 @@
 									<input
 										type="tel"
 										id="fieldPhone"
-										name="phone"
+										name="phone2"
 										class="form-input"
 										placeholder="+7 (___) ___-__-__"
 										required />
