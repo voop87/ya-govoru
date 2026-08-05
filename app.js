@@ -544,7 +544,7 @@ function reinitReveal(elements) {
 }
 
 /* ============================================================
-   7. CONTACT FORM — Валидация + Submit
+   7. CONTACT FORM — Валидация + Google Apps Script Submit
    ============================================================ */
 (function initContactForm() {
 	const form = document.getElementById("contactForm");
@@ -553,7 +553,19 @@ function reinitReveal(elements) {
 
 	if (!form) return;
 
-	/** Конфигурация полей: id, id ошибки, правило валидации, сообщение */
+	const GOOGLE_SCRIPT_URL =
+		"https://script.google.com/macros/s/AKfycby3rNlcAvqJyFS6r4Qd-moliRjoDF4jH4s76i4UUN63UBjQvAxXLy0ER9FRQ8wsVzaL/exec";
+
+	const originalBtnHTML = submitBtn.innerHTML;
+
+	const spinnerSVG = `
+    <svg class="btn-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <circle cx="12" cy="12" r="10" stroke-opacity="0.25" />
+      <path d="M12 2 a10 10 0 0 1 10 10" stroke-linecap="round" />
+    </svg>
+  `;
+
+	/** Конфигурация полей для валидации */
 	const FIELDS_CONFIG = [
 		{
 			inputId: "fieldName",
@@ -567,25 +579,18 @@ function reinitReveal(elements) {
 			validate: (v) => /^[\d\s\+\-\(\)]{10,18}$/.test(v.trim()),
 			message: "Введите корректный номер телефона",
 		},
-		{
-			inputId: "fieldAge",
-			errorId: "errorAge",
-			validate: (v) => v !== "",
-			message: "Выберите возраст ребёнка",
-		},
 	];
 
-	/**
-	 * Валидация одного поля.
-	 * Возвращает true если поле прошло, false — если нет.
-	 */
+	/** Валидация одного поля */
 	function validateField(config) {
 		const input = document.getElementById(config.inputId);
 		const error = document.getElementById(config.errorId);
+		if (!input) return true;
+
 		const isValid = config.validate(input.value);
 
 		input.classList.toggle("error", !isValid);
-		error.textContent = isValid ? "" : config.message;
+		if (error) error.textContent = isValid ? "" : config.message;
 
 		return isValid;
 	}
@@ -606,38 +611,58 @@ function reinitReveal(elements) {
 		input?.addEventListener("change", () => validateField(cfg));
 	});
 
-	/**
-	 * Обработка отправки формы.
-	 * В реальном проекте здесь будет fetch() к бэкенду или API.
-	 */
-	form.addEventListener("submit", async (e) => {
+	/** Единственный обработчик отправки формы */
+	form.addEventListener("submit", function (e) {
 		e.preventDefault();
 
+		// 1. Запускаем кастомную валидацию
 		if (!validateForm()) return;
 
-		// Состояние загрузки
+		// 2. Блокируем кнопку и включаем лоадер
 		submitBtn.disabled = true;
-		submitBtn.textContent = "Отправляем...";
+		submitBtn.classList.add("loading");
+		submitBtn.innerHTML = `${spinnerSVG} Отправляю...`;
 
-		// Имитация задержки сети
-		await new Promise((resolve) => setTimeout(resolve, 1200));
+		// 3. Собираем данные
+		const formData = new FormData(this);
+		const data = {
+			name: formData.get("name") ? formData.get("name").trim() : "",
+			phone: formData.get("phone") ? formData.get("phone").trim() : "",
+			msg: formData.get("description")
+				? formData.get("description").trim()
+				: "",
+		};
 
-		// Показываем успех
-		successMsg.classList.add("show");
+		// 4. Отправляем в Google Apps Script
+		fetch(GOOGLE_SCRIPT_URL, {
+			method: "POST",
+			mode: "no-cors",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data),
+		})
+			.then(() => {
+				// Успешная отправка
+				form.classList.add("is-sent");
 
-		// Через 6 секунд сбрасываем форму
-		setTimeout(() => {
-			successMsg.classList.remove("show");
-			form.reset();
-			submitBtn.disabled = false;
-			submitBtn.innerHTML = `
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <line x1="22" y1="2" x2="11" y2="13"/>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-        </svg>
-        Отправить заявку
-      `;
-		}, 6000);
+				if (successMsg) {
+					successMsg.style.display = "block";
+					setTimeout(() => {
+						successMsg.classList.add("is-visible");
+					}, 20);
+				}
+
+				form.reset();
+			})
+			.catch((error) => {
+				console.error("Ошибка отправки:", error);
+				alert("Произошла ошибка при отправке заявки. Попробуйте еще раз.");
+
+				submitBtn.disabled = false;
+				submitBtn.classList.remove("loading");
+				submitBtn.innerHTML = originalBtnHTML;
+			});
 	});
 })();
 
@@ -648,7 +673,6 @@ function reinitReveal(elements) {
 	const btn = document.getElementById("scrollTopBtn");
 	if (!btn) return;
 
-	/** Показываем кнопку после 400px прокрутки */
 	window.addEventListener(
 		"scroll",
 		() => {
@@ -669,19 +693,13 @@ function reinitReveal(elements) {
 	const phoneInput = document.getElementById("fieldPhone");
 	if (!phoneInput) return;
 
-	/**
-	 * Простая маска для российского телефона: +7 (000) 000-00-00
-	 * Срабатывает на каждый ввод символа
-	 */
 	phoneInput.addEventListener("input", (e) => {
-		let val = e.target.value.replace(/\D/g, ""); // только цифры
+		let val = e.target.value.replace(/\D/g, "");
 
-		// Убираем ведущую 7 или 8 если есть
 		if (val.startsWith("7") || val.startsWith("8")) {
 			val = val.slice(1);
 		}
 
-		// Ограничиваем до 10 цифр
 		val = val.slice(0, 10);
 
 		let formatted = "+7";
@@ -693,7 +711,6 @@ function reinitReveal(elements) {
 		e.target.value = formatted;
 	});
 
-	// Предотвращаем ввод нецифровых символов (кроме спец-клавиш)
 	phoneInput.addEventListener("keydown", (e) => {
 		const allowedKeys = [
 			"Backspace",
@@ -709,7 +726,7 @@ function reinitReveal(elements) {
 			"End",
 		];
 		if (allowedKeys.includes(e.key)) return;
-		if (e.ctrlKey || e.metaKey) return; // разрешаем Ctrl+C/V/A и т.д.
+		if (e.ctrlKey || e.metaKey) return;
 		if (!/\d/.test(e.key)) e.preventDefault();
 	});
 })();
@@ -718,7 +735,7 @@ function reinitReveal(elements) {
    10. SMOOTH ANCHOR LINKS — компенсация высоты navbar
    ============================================================ */
 (function initSmoothAnchors() {
-	const NAV_HEIGHT = 72; // --nav-height
+	const NAV_HEIGHT = 72;
 
 	document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 		anchor.addEventListener("click", (e) => {
@@ -740,10 +757,6 @@ function reinitReveal(elements) {
    11. HERO LETTERS — добавляем анимации при скролле
    ============================================================ */
 (function initHeroLetterEffects() {
-	/**
-	 * При наведении на крупные буквы добавляем тень-свечение
-	 * (класс hover-wiggle уже обрабатывает transform через CSS)
-	 */
 	const nearLetters = document.querySelectorAll(".near-letter");
 	const colors = ["#F43F5E", "#0D9488", "#F59E0B", "#6366F1", "#10B981"];
 
@@ -760,82 +773,3 @@ function reinitReveal(elements) {
 		});
 	});
 })();
-
-document.addEventListener("DOMContentLoaded", () => {
-	const form = document.getElementById("contactForm");
-	const submitBtn = document.getElementById("formSubmitBtn");
-	const successMessage = document.getElementById("formSuccess");
-
-	// URL вашего веб-приложения Google Apps Script
-	const GOOGLE_SCRIPT_URL =
-		"https://script.google.com/macros/s/AKfycby3rNlcAvqJyFS6r4Qd-moliRjoDF4jH4s76i4UUN63UBjQvAxXLy0ER9FRQ8wsVzaL/exec";
-
-	// Исходное содержимое кнопки (чтобы восстановить в случае ошибки)
-	const originalBtnHTML = submitBtn.innerHTML;
-
-	// Иконка-спиннер (SVG вращающееся колесико)
-	const spinnerSVG = `
-    <svg class="btn-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <circle cx="12" cy="12" r="10" stroke-opacity="0.25" />
-      <path d="M12 2 a10 10 0 0 1 10 10" stroke-linecap="round" />
-    </svg>
-  `;
-
-	form.addEventListener("submit", function (e) {
-		e.preventDefault();
-
-		// 1. Собираем данные формы
-		const formData = new FormData(this);
-		const data = {
-			name: formData.get("name") ? formData.get("name").trim() : "",
-			phone: formData.get("phone") ? formData.get("phone").trim() : "",
-			msg: formData.get("description")
-				? formData.get("description").trim()
-				: "",
-		};
-
-		// Простая проверка обязательных полей
-		if (!data.name || !data.phone) {
-			alert("Пожалуйста, заполните имя и телефон");
-			return;
-		}
-
-		// 2. Блокируем кнопку и включаем лоадер
-		submitBtn.disabled = true;
-		submitBtn.classList.add("loading");
-		submitBtn.innerHTML = `${spinnerSVG} Отправляю...`;
-
-		// 3. Отправляем данные на Google Apps Script
-		fetch(GOOGLE_SCRIPT_URL, {
-			method: "POST",
-			mode: "no-cors",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(data),
-		})
-			.then(() => {
-				// 4. Успешная отправка: скрываем поля формы и мягко проявляем сообщение
-				form.classList.add("is-sent");
-
-				if (successMessage) {
-					// Вызываем через requestAnimationFrame/setTimeout для запуска CSS-перехода
-					successMessage.style.display = "block";
-					setTimeout(() => {
-						successMessage.classList.add("is-visible");
-					}, 20);
-				}
-
-				form.reset();
-			})
-			.catch((error) => {
-				console.error("Ошибка отправки:", error);
-				alert("Произошла ошибка при отправке заявки. Попробуйте еще раз.");
-
-				// При ошибке разблокируем кнопку
-				submitBtn.disabled = false;
-				submitBtn.classList.remove("loading");
-				submitBtn.innerHTML = originalBtnHTML;
-			});
-	});
-});
