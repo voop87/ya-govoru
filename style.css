@@ -2306,3 +2306,7 @@ textarea {
 .contact-form.is-sent .form-privacy {
 	display: none !important;
 }
+
+.contact-form.is-sent {
+	min-height: 220px;
+}
