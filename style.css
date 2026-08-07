@@ -1224,6 +1224,7 @@ textarea {
 }
 
 .slide {
+	max-width: 600px;
 	cursor: pointer;
 	min-width: 100%;
 	flex-shrink: 0;
