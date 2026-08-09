@@ -218,6 +218,7 @@
 			const total = slides.length;
 			let currentIndex = 0;
 			let autoplayTimer = null;
+			let pauseTimeout = null;
 			let isDragging = false;
 			let dragOffset = 0;
 
@@ -228,7 +229,10 @@
 					const dot = document.createElement("button");
 					dot.className = "slider-dot" + (i === 0 ? " active" : "");
 					dot.setAttribute("aria-label", `Слайд ${i + 1}`);
-					dot.addEventListener("click", () => goTo(i));
+					dot.addEventListener("click", () => {
+						pauseAutoplayTemporary();
+						goTo(i);
+					});
 					dotsWrap.appendChild(dot);
 				});
 			}
@@ -242,7 +246,6 @@
 				dots.forEach((d, i) =>
 					d.classList.toggle("active", i === currentIndex),
 				);
-				resetAutoplay();
 			}
 
 			function goNext() {
@@ -253,24 +256,44 @@
 			}
 
 			/* Кнопки навигации */
-			nextBtn?.addEventListener("click", goNext);
-			prevBtn?.addEventListener("click", goPrev);
+			nextBtn?.addEventListener("click", () => {
+				pauseAutoplayTemporary();
+				goNext();
+			});
+			prevBtn?.addEventListener("click", () => {
+				pauseAutoplayTemporary();
+				goPrev();
+			});
 
-			/* Автопрокрутка */
+			/* Автопрокрутка и пауза при взаимодействии */
 			function startAutoplay() {
+				stopAutoplay();
 				autoplayTimer = setInterval(goNext, 4500);
 			}
 
-			function resetAutoplay() {
-				clearInterval(autoplayTimer);
-				startAutoplay();
+			function stopAutoplay() {
+				if (autoplayTimer) {
+					clearInterval(autoplayTimer);
+					autoplayTimer = null;
+				}
+			}
+
+			// Пауза на 10 секунд при клике / свайпе / таче
+			function pauseAutoplayTemporary() {
+				stopAutoplay();
+				if (pauseTimeout) clearTimeout(pauseTimeout);
+				pauseTimeout = setTimeout(() => {
+					startAutoplay();
+				}, 10000); // 10000 мс = 10 секунд
 			}
 
 			startAutoplay();
 
-			/* Пауза при наведении */
-			wrap.addEventListener("mouseenter", () => clearInterval(autoplayTimer));
-			wrap.addEventListener("mouseleave", startAutoplay);
+			/* Пауза при наведении мыши (для десктопа) */
+			wrap.addEventListener("mouseenter", stopAutoplay);
+			wrap.addEventListener("mouseleave", () => {
+				if (!pauseTimeout) startAutoplay();
+			});
 
 			/* Клик по слайду -> Полноэкранный просмотр */
 			slides.forEach((slide) => {
@@ -278,7 +301,6 @@
 				if (!img) return;
 
 				slide.addEventListener("click", () => {
-					// Открываем модальное окно только если не происходил свайп
 					if (Math.abs(dragOffset) < 10) {
 						openLightbox(img.src);
 					}
@@ -288,14 +310,15 @@
 			/* Touch / Swipe поддержка */
 			let startX = 0;
 			let startY = 0;
-			const SWIPE_THRESHOLD = 50;
+			const SWIPE_THRESHOLD = 40;
 
 			track.addEventListener(
 				"touchstart",
 				(e) => {
+					pauseAutoplayTemporary();
 					startX = e.changedTouches[0].clientX;
 					startY = e.changedTouches[0].clientY;
-					dragOffset = 0; // Сбрасываем смещение в начале касания
+					dragOffset = 0;
 					isDragging = true;
 				},
 				{ passive: true },
@@ -306,7 +329,7 @@
 				(e) => {
 					if (!isDragging) return;
 					const currentX = e.changedTouches[0].clientX;
-					dragOffset = currentX - startX; // Фиксируем движение пальца
+					dragOffset = currentX - startX;
 				},
 				{ passive: true },
 			);
@@ -334,6 +357,7 @@
 
 			/* Drag (Мышь) */
 			track.addEventListener("mousedown", (e) => {
+				pauseAutoplayTemporary();
 				startX = e.clientX;
 				dragOffset = 0;
 				isDragging = true;
